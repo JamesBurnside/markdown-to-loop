@@ -155,6 +155,14 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+// Show the platform-correct shortcut hint on the copy button.
+const shortcutEl = document.querySelector('.copy-shortcut');
+if (shortcutEl) {
+  const platform = (navigator.userAgentData && navigator.userAgentData.platform) ||
+                   navigator.platform || '';
+  shortcutEl.textContent = /mac/i.test(platform) ? '⌘ ↵' : 'Ctrl ↵';
+}
+
 // Initial state — restore draft if present, otherwise show the demo content.
 const draft = loadDraft();
 input.value = draft !== null ? draft : DEFAULT_MARKDOWN;
