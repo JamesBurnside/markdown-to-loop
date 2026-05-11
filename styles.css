@@ -40,11 +40,19 @@ body {
 
 .header {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   justify-content: space-between;
-  padding: 22px var(--pad-x);
+  gap: 24px;
+  padding: 22px var(--pad-x) 14px;
   border-bottom: 1px solid var(--hairline);
   animation: fadeUp 600ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+.brand-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
 }
 
 .brand {
@@ -58,6 +66,19 @@ body {
 
 .brand em {
   font-style: italic;
+}
+
+.tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--ink-muted);
+  letter-spacing: 0.005em;
+}
+
+.tagline em {
+  color: var(--ink);
 }
 
 .brand-arrow {
@@ -74,6 +95,8 @@ body {
 }
 
 .repo-link {
+  flex-shrink: 0;
+  margin-top: 8px;
   font-family: var(--font-mono);
   font-size: 11px;
   text-transform: uppercase;
@@ -416,8 +439,9 @@ body {
   html, body { overflow: auto; }
   body { height: auto; min-height: 100vh; }
 
-  .header { padding: 16px var(--pad-x); }
+  .header { padding: 16px var(--pad-x) 12px; gap: 16px; }
   .brand { font-size: 24px; }
+  .tagline { font-size: 13px; line-height: 1.4; }
 
   .workspace {
     grid-template-columns: 1fr;
