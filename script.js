@@ -7,6 +7,8 @@ const preview = document.getElementById('preview');
 const copyBtn = document.getElementById('copy-btn');
 const toast   = document.getElementById('toast');
 
+const STORAGE_KEY = 'md2loop.markdown';
+
 const DEFAULT_MARKDOWN = `# Project plan
 
 A quick note on the **next steps** before Friday.
@@ -82,6 +84,25 @@ function loopify(html) {
 function update() {
   const html = loopify(renderMarkdown(input.value));
   preview.innerHTML = html;
+  saveDraft(input.value);
+}
+
+// ──────────── Persistence ─────────────────────────────────────────────────
+
+function loadDraft() {
+  try {
+    return localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return null;
+  }
+}
+
+function saveDraft(value) {
+  try {
+    localStorage.setItem(STORAGE_KEY, value);
+  } catch {
+    /* quota / privacy-mode: ignore */
+  }
 }
 
 // ──────────── Toast ───────────────────────────────────────────────────────
@@ -134,6 +155,7 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Initial state
-input.value = DEFAULT_MARKDOWN;
+// Initial state — restore draft if present, otherwise show the demo content.
+const draft = loadDraft();
+input.value = draft !== null ? draft : DEFAULT_MARKDOWN;
 update();
