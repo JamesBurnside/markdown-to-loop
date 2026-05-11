@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>md2loop — Markdown to Microsoft Loop</title>
+  <meta name="description" content="Convert Markdown to clipboard HTML that pastes cleanly into Microsoft Loop.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <h1 class="brand">md<span class="brand-arrow">→</span><em>loop</em></h1>
+    <a class="repo-link" href="https://github.com/JamesBurnside/markdown-to-loop" target="_blank" rel="noopener">github ↗</a>
+  </header>
+
+  <main class="workspace">
+    <section class="pane pane--input">
+      <div class="pane-label">
+        <span class="pane-num">01</span>
+        <span class="pane-name">Markdown</span>
+      </div>
+      <textarea
+        id="md-input"
+        spellcheck="false"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+      ></textarea>
+    </section>
+
+    <section class="pane pane--preview">
+      <div class="pane-label">
+        <span class="pane-num">02</span>
+        <span class="pane-name">Loop preview</span>
+      </div>
+      <div id="preview" class="preview" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="actions">
+    <p class="hint"><em>Paste markdown</em> &middot; copy &middot; paste into Loop</p>
+    <button id="copy-btn" class="copy-btn" type="button">
+      Copy as Loop HTML
+      <span class="copy-shortcut">⌘ ↵</span>
+    </button>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked@13.0.0/marked.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
